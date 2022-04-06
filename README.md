@@ -1,1 +1,1 @@
-# covid_app
+# informa_saude
