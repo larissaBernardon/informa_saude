@@ -2,15 +2,31 @@
 
 A new Flutter project.
 
-## Getting Started
+## Requirements
 
-This project is a starting point for a Flutter application.
+- flutter 2.0.3 or later installed.
 
-A few resources to get you started if this is your first Flutter project:
+- android or iOS emulator or physical device to run the application.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Project dependencies
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **flutter_mobx/ mobx:** used for state management. see getting started here -> [https://mobx.netlify.app/getting-started/]
+
+## Useful commands
+
+- To generate code:
+
+> flutter pub run build_runner build --delete-conflicting-outputs
+
+
+
+- To clear cache
+
+> flutter clean
+
+  
+
+- To get/update project dependencies
+
+> flutter pub get
+
