@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:informa_saude/home/home_controller.dart';
 
 import '../map/map_page.dart';
@@ -23,10 +24,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: _pageController,
-        children: _buildPageViewItems(),
+      body: Observer(
+        builder: (BuildContext context) {
+          return PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _pageController,
+            children: _buildPageViewItems(),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 12,
@@ -34,6 +39,7 @@ class _HomePageState extends State<HomePage> {
         onTap: (id) {
           _pageController.jumpToPage(id);
           widget.controller.onPageSelected(id);
+          setState(() {});
         },
         showUnselectedLabels: true,
         currentIndex: widget.controller.pageSelected,
