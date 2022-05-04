@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:informa_saude/home/home_controller.dart';
+import 'package:informa_saude/map/map_controller.dart';
 
 import '../map/map_page.dart';
 import '../news/news_page.dart';
@@ -53,7 +54,9 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _buildPageViewItems() {
     return [
       const StatisticsPage(),
-      const MapPage(),
+      MapWidget(
+        controller: MapController(),
+      ),
       const NewsPage(),
       const ProfilePage(),
     ];
