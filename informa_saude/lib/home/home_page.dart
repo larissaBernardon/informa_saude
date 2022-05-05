@@ -53,10 +53,10 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _buildPageViewItems() {
     return [
-      const StatisticsPage(),
       MapWidget(
         controller: MapController(),
       ),
+      const StatisticsPage(),
       const NewsPage(),
       const ProfilePage(),
     ];
@@ -64,8 +64,8 @@ class _HomePageState extends State<HomePage> {
 
   List<BottomNavigationBarItem> _buildBottomItems() {
     return [
-      _buildStatisticsItem(),
       _buildMapItem(),
+      _buildStatisticsItem(),
       _buildNewsItem(),
       _buildProfileItem(),
     ];
@@ -74,26 +74,26 @@ class _HomePageState extends State<HomePage> {
   BottomNavigationBarItem _buildProfileItem() {
     return BottomNavigationBarItem(
       icon: Icon(
-        Icons.verified_user_outlined,
+        Icons.person_outline_rounded,
         size: 22,
         color: widget.controller.isProfileSelected
             ? Colors.black
             : Colors.blue.shade600,
       ),
-      label: 'Minha Área',
+      label: 'Perfil',
     );
   }
 
   BottomNavigationBarItem _buildNewsItem() {
     return BottomNavigationBarItem(
       icon: Icon(
-        Icons.new_releases_outlined,
+        Icons.info_outline_rounded,
         size: 22,
         color: widget.controller.isNewsSelected
             ? Colors.black
             : Colors.blue.shade600,
       ),
-      label: 'Notícias',
+      label: 'Informações',
     );
   }
 

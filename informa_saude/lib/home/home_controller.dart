@@ -23,8 +23,8 @@ abstract class _HomeController with Store {
   @computed
   bool get isProfileSelected => _pageSelected == profilePageId;
 
-  static const int statisticsPageId = 0;
-  static const int mapPageId = 1;
+  static const int mapPageId = 0;
+  static const int statisticsPageId = 1;
   static const int newsPageId = 2;
   static const int profilePageId = 3;
 
