@@ -17,9 +17,7 @@ abstract class _MapController with Store {
   Set<Marker> markers = {};
 
   @action
-  Future getCurrentLocation({
-    required Function completion,
-  }) async {
+  Future getCurrentLocation() async {
     var _serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!_serviceEnabled) {
       return Future.error('Location services are disabled.');
@@ -42,8 +40,6 @@ abstract class _MapController with Store {
     final positionResponse = await Geolocator.getCurrentPosition();
     position = Observable(positionResponse);
     navigateToPosition();
-    addMarkers();
-    completion();
     return;
   }
 

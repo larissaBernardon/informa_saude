@@ -32,7 +32,7 @@ class MapSampleState extends State<MapWidget>
 
     widget.controller.setMarkersAppearence();
 
-    widget.controller.getCurrentLocation(completion: updateState);
+    widget.controller.getCurrentLocation();
     disposer();
     super.initState();
   }
@@ -51,6 +51,14 @@ class MapSampleState extends State<MapWidget>
             widget.controller.addMarkers();
           });
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          widget.controller.addMarkers();
+          setState(() {});
+        },
+        backgroundColor: Colors.green,
+        child: const Icon(Icons.navigation),
       ),
     );
   }

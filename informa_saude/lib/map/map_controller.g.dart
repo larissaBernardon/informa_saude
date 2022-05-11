@@ -28,9 +28,9 @@ mixin _$MapController on _MapController, Store {
       AsyncAction('_MapController.getCurrentLocation');
 
   @override
-  Future<dynamic> getCurrentLocation({required Function completion}) {
+  Future<dynamic> getCurrentLocation() {
     return _$getCurrentLocationAsyncAction
-        .run(() => super.getCurrentLocation(completion: completion));
+        .run(() => super.getCurrentLocation());
   }
 
   @override
