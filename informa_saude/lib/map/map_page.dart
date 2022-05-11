@@ -52,13 +52,14 @@ class MapSampleState extends State<MapWidget>
           });
         },
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           widget.controller.addMarkers();
           setState(() {});
         },
         backgroundColor: Colors.green,
-        child: const Icon(Icons.navigation),
+        label: const Text('Estou com covid'),
+        icon: const Icon(Icons.add),
       ),
     );
   }
