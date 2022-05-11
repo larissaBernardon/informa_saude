@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobx/mobx.dart';
 
@@ -31,7 +30,9 @@ class MapSampleState extends State<MapWidget>
       },
     );
 
-    widget.controller.getCurrentLocation();
+    widget.controller.setMarkersAppearence();
+
+    widget.controller.getCurrentLocation(completion: updateState);
     disposer();
     super.initState();
   }
@@ -43,11 +44,18 @@ class MapSampleState extends State<MapWidget>
         myLocationEnabled: true,
         mapType: MapType.normal,
         initialCameraPosition: widget.controller.getInitialPosition(),
+        markers: widget.controller.markers,
         onMapCreated: (GoogleMapController controller) {
           widget.controller.googleMapController.complete(controller);
-          setState(() {});
+          setState(() {
+            widget.controller.addMarkers();
+          });
         },
       ),
     );
+  }
+
+  void updateState() {
+    setState(() {});
   }
 }
