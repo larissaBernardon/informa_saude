@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:informa_saude/home/home_controller.dart';
 import 'package:informa_saude/map/map_controller.dart';
-
+import 'package:informa_saude/statistics/statistics_controller.dart';
 import '../map/map_page.dart';
 import '../news/news_page.dart';
 import '../profile/profile_page.dart';
@@ -56,7 +56,9 @@ class _HomePageState extends State<HomePage> {
       MapWidget(
         controller: MapController(),
       ),
-      const StatisticsPage(),
+      StatisticsPage(
+        controller: StatisticsController(),
+      ),
       const NewsPage(),
       const ProfilePage(),
     ];
