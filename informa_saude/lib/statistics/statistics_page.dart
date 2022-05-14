@@ -16,7 +16,8 @@ class StatisticsPage extends StatefulWidget {
 class _StatisticsPageState extends State<StatisticsPage> {
   @override
   void initState() {
-    widget.controller.getCountriesData();
+    //widget.controller.getCountriesData();
+    widget.controller.getBrazilStatesData();
     super.initState();
   }
 
@@ -28,7 +29,19 @@ class _StatisticsPageState extends State<StatisticsPage> {
         child: _buildAppBar(),
       ),
       extendBodyBehindAppBar: true,
-      body: Column(),
+      body: Column(
+        children: [
+          // _buildBrazilCards(),
+          // _buildGlobalCards(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCard() {
+    return Container(
+      height: 100,
+      width: 100,
     );
   }
 
