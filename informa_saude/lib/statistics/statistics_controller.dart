@@ -1,3 +1,4 @@
+import 'package:informa_saude/models/country.dart';
 import 'package:mobx/mobx.dart';
 import 'package:dio/dio.dart';
 
@@ -11,10 +12,21 @@ abstract class _StatisticsControllerBase with Store {
     BaseOptions(baseUrl: 'https://covid19-brazil-api.now.sh/api/report'),
   );
 
+  @observable
+  ObservableFuture<List<Country>?> countriesResponse =
+      ObservableFuture.value(null);
+
+  @action
   Future getCountriesData() async {
     try {
       var response = await dio.get('/v1/countries');
-      print(response);
+      var responseData = response.data["data"];
+      countriesResponse = ObservableFuture.value(responseData.map((country) {
+        print(country);
+        return Country.fromJson(country);
+      }).toList());
+
+      print(countriesResponse.value?.first.country);
     } catch (e) {
       print(e);
     }

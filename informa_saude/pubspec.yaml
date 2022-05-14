@@ -32,4 +32,11 @@ flutter:
 
   assets:
     - assets/virus.png
+    - assets/backkground.png
+    - assets/man.png
+    - assets/computer.png
+    - assets/flower.png
+    - assets/women-handup.png
+    - assets/women-laptop.png
+
 
