@@ -1,15 +1,198 @@
 import 'package:flutter/material.dart';
+import 'package:informa_saude/news/card_detail.dart';
+
+enum CardType {
+  twitter,
+  fakeNews,
+  covid,
+  sintomas,
+  transmissao,
+}
 
 class NewsPage extends StatelessWidget {
   const NewsPage({Key? key}) : super(key: key);
+  static const IconData coronavirusOutlined =
+      IconData(0xef88, fontFamily: 'MaterialIcons');
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 200,
-        width: 200,
-        color: Colors.pink,
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildSectionTitle('Twitter oficial'),
+              _buildCardItem(context: context, type: CardType.twitter),
+              _buildSectionTitle('Notícias'),
+              _buildCardItem(context: context, type: CardType.fakeNews),
+              _buildSectionTitle('COVID-19'),
+              _buildCardItem(context: context, type: CardType.covid),
+              _buildCardItem(context: context, type: CardType.sintomas),
+              _buildCardItem(context: context, type: CardType.transmissao),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding _buildCardItem({
+    required BuildContext context,
+    required CardType type,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+      child: GestureDetector(
+        onTap: () => _navigateToRoute(context: context, type: type),
+        child: Container(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                width: 30,
+              ),
+              _buildIcon(type),
+              const SizedBox(width: 15),
+              _buildCardTitle(type),
+            ],
+          ),
+          height: 115,
+          width: 360,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: const Color.fromRGBO(190, 202, 218, 1),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _navigateToRoute({
+    required BuildContext context,
+    required CardType type,
+  }) {
+    var headerTitle = '';
+    var content = '';
+
+    if (type == CardType.covid) {
+      headerTitle = 'Covid';
+      content = 'Saiba aqui sobre covid';
+    }
+
+    if (type == CardType.sintomas) {
+      headerTitle = 'Sintomas';
+      content = 'Texto sobre sintomas aqui';
+    }
+
+    if (type != CardType.twitter && type != CardType.fakeNews) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CardDetail(
+            headerTitle: headerTitle,
+            content: content,
+          ),
+        ),
+      );
+    } else {
+      // se for um dos dois abre url
+    }
+  }
+
+  Text _buildCardTitle(CardType type) {
+    switch (type) {
+      case CardType.covid:
+        return _buildTitle('O que é COVID-19?');
+      case CardType.sintomas:
+        return _buildTitle('Quais são os sintomas?');
+      case CardType.transmissao:
+        return _buildTitle('Como se transmite?');
+      case CardType.twitter:
+        return _buildTitle('Ministério da saúde');
+      case CardType.fakeNews:
+        return _buildTitle('Fake news?');
+    }
+  }
+
+  Text _buildTitle(String text) {
+    return Text(
+      text,
+      style: const TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w700,
+      ),
+    );
+  }
+
+  Container _buildIcon(CardType type) {
+    switch (type) {
+      case CardType.covid:
+        return _buildCardInfo(
+          const Color.fromRGBO(209, 210, 255, 1),
+          coronavirusOutlined,
+          const Color.fromRGBO(108, 110, 219, 1),
+        );
+      case CardType.sintomas:
+        return _buildCardInfo(
+          const Color.fromRGBO(214, 246, 255, 1),
+          Icons.vaccines_outlined,
+          const Color.fromRGBO(0, 157, 199, 1),
+        );
+      case CardType.transmissao:
+        return _buildCardInfo(
+          const Color.fromRGBO(242, 227, 233, 1),
+          Icons.update_outlined,
+          const Color.fromRGBO(157, 76, 108, 1),
+        );
+      case CardType.twitter:
+        return _buildCardInfo(
+          const Color.fromRGBO(242, 227, 233, 1),
+          Icons.add_to_home_screen_outlined,
+          const Color.fromRGBO(157, 76, 108, 1),
+        );
+      case CardType.fakeNews:
+        return _buildCardInfo(
+          const Color.fromRGBO(250, 240, 219, 1),
+          Icons.newspaper_outlined,
+          const Color.fromRGBO(224, 159, 31, 1),
+        );
+    }
+  }
+
+  _buildCardInfo(
+    Color color,
+    IconData iconData,
+    Color iconColor,
+  ) {
+    return Container(
+      width: 56,
+      height: 56,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(40),
+      ),
+      child: Icon(
+        iconData,
+        size: 30,
+        color: iconColor,
+      ),
+    );
+  }
+
+  Padding _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(30, 30, 30, 10),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontSize: 27,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }

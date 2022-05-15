@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:informa_saude/home/home_controller.dart';
+import 'package:informa_saude/map/map_controller.dart';
 
 import '../map/map_page.dart';
 import '../news/news_page.dart';
@@ -23,10 +25,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        physics: const NeverScrollableScrollPhysics(),
-        controller: _pageController,
-        children: _buildPageViewItems(),
+      body: Observer(
+        builder: (BuildContext context) {
+          return PageView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _pageController,
+            children: _buildPageViewItems(),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedFontSize: 12,
@@ -34,6 +40,7 @@ class _HomePageState extends State<HomePage> {
         onTap: (id) {
           _pageController.jumpToPage(id);
           widget.controller.onPageSelected(id);
+          setState(() {});
         },
         showUnselectedLabels: true,
         currentIndex: widget.controller.pageSelected,
@@ -46,8 +53,10 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _buildPageViewItems() {
     return [
+      MapWidget(
+        controller: MapController(),
+      ),
       const StatisticsPage(),
-      const MapPage(),
       const NewsPage(),
       const ProfilePage(),
     ];
@@ -55,8 +64,8 @@ class _HomePageState extends State<HomePage> {
 
   List<BottomNavigationBarItem> _buildBottomItems() {
     return [
-      _buildStatisticsItem(),
       _buildMapItem(),
+      _buildStatisticsItem(),
       _buildNewsItem(),
       _buildProfileItem(),
     ];
@@ -65,26 +74,26 @@ class _HomePageState extends State<HomePage> {
   BottomNavigationBarItem _buildProfileItem() {
     return BottomNavigationBarItem(
       icon: Icon(
-        Icons.verified_user_outlined,
+        Icons.person_outline_rounded,
         size: 22,
         color: widget.controller.isProfileSelected
             ? Colors.black
             : Colors.blue.shade600,
       ),
-      label: 'Minha Área',
+      label: 'Perfil',
     );
   }
 
   BottomNavigationBarItem _buildNewsItem() {
     return BottomNavigationBarItem(
       icon: Icon(
-        Icons.new_releases_outlined,
+        Icons.info_outline_rounded,
         size: 22,
         color: widget.controller.isNewsSelected
             ? Colors.black
             : Colors.blue.shade600,
       ),
-      label: 'Notícias',
+      label: 'Informações',
     );
   }
 
