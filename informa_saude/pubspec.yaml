@@ -56,7 +56,7 @@ flutter:
     - assets/Barbados.png
     - assets/Belarus.png
     - assets/Belgium.png
-    # - assets/Belize.png
+    - assets/Belize.png
     - assets/Benin.png
     - assets/Bhutan.png
     - assets/Bolivia.png
@@ -68,7 +68,7 @@ flutter:
     - assets/Burkina Faso.png
     - assets/Burma.png
     - assets/Burundi.png
-    # - assets/Cabo Verde.png
+    - assets/Cabo Verde.png
     - assets/Cambodia.png
     - assets/Cameroon.png
     - assets/Canada.png
@@ -99,7 +99,7 @@ flutter:
     - assets/Estonia.png
     - assets/Eswatini.png
     - assets/Ethiopia.png
-    # - assets/Fiji.png
+    - assets/Fiji.png
     - assets/Finland.png
     - assets/France.png
     - assets/Gabon.png
@@ -145,7 +145,7 @@ flutter:
     - assets/Liechtenstein.png
     - assets/Lithuania.png
     - assets/Luxembourg.png
-    # - assets/MS Zaandam.png
+    - assets/MS Zaandam.png
     - assets/Madagascar.png
     - assets/Malawi.png
     - assets/Malaysia.png
@@ -156,15 +156,15 @@ flutter:
     - assets/Mauritania.png
     - assets/Mauritius.png
     - assets/Mexico.png
-    # - assets/Micronesia.png
+    - assets/Micronesia.png
     - assets/Moldova.png
     - assets/Monaco.png
     - assets/Mongolia.png
     - assets/Montenegro.png
     - assets/Morocco.png
     - assets/Mozambique.png
-    # - assets/Namibia.png
-    # - assets/Nepal.png
+    - assets/Namibia.png
+    - assets/Nepal.png
     - assets/Netherlands.png
     - assets/New Zealand.png
     - assets/Nicaragua.png
@@ -184,10 +184,10 @@ flutter:
     - assets/Portugal.png
     - assets/Qatar.png
     - assets/Romania.png
-    # - assets/Russia.png
+    - assets/Russia.png
     - assets/Rwanda.png
     - assets/Saint Kitts and Nevis.png
-    # - assets/Saint Lucia.png
+    - assets/Saint Lucia.png
     - assets/Saint Vincent and the Grenadines.png
     - assets/Samoa.png
     - assets/San Marino.png
@@ -203,38 +203,38 @@ flutter:
     - assets/Solomon Islands.png
     - assets/Somalia.png
     - assets/background.png
-    # - assets/South Africa.png
+    - assets/South Africa.png
     - assets/South Sudan.png
-    # - assets/Spain.png
+    - assets/Spain.png
     - assets/Sri Lanka.png
-    # - assets/Sudan.png
-    # - assets/Summer Olympics 2020.png
-    # - assets/Suriname.png
-    # - assets/Sweden.png
-    # - assets/Switzerland.png
-    # - assets/Syria.png
-    # - assets/Taiwan*.png
-    # - assets/Tajikistan.png
-    # - assets/Tanzania.png
-    # - assets/Thailand.png
-    # - assets/Timor-Leste.png
-    # - assets/Togo.png
-    # - assets/Tonga.png
-    # - assets/Trinidad and Tobago.png
-    # - assets/Tunisia.png
-    # - assets/Turkey.png
-    # - assets/US.png
-    # - assets/Uganda.png
-    # - assets/Ukraine.png
-    # - assets/United Arab Emirates.png
-    # - assets/United Kingdom.png
-    # - assets/Uruguay.png
-    # - assets/Uzbekistan.png
-    # - assets/Vanuatu.png
-    # - assets/Venezuela.png
-    # - assets/Vietnam.png
+    - assets/Sudan.png
+    - assets/Summer Olympics 2020.png
+    - assets/Suriname.png
+    - assets/Sweden.png
+    - assets/Switzerland.png
+    - assets/Syria.png
+    - assets/Taiwan*.png
+    - assets/Tajikistan.png
+    - assets/Tanzania.png
+    - assets/Thailand.png
+    - assets/Timor-Leste.png
+    - assets/Togo.png
+    - assets/Tonga.png
+    - assets/Trinidad and Tobago.png
+    - assets/Tunisia.png
+    - assets/Turkey.png
+    - assets/US.png
+    - assets/Uganda.png
+    - assets/Ukraine.png
+    - assets/United Arab Emirates.png
+    - assets/United Kingdom.png
+    - assets/Uruguay.png
+    - assets/Uzbekistan.png
+    - assets/Vanuatu.png
+    - assets/Venezuela.png
+    - assets/Vietnam.png
     # - assets/West Bank and Gaza.png
     # - assets/Winter Olympics 2022.png
-    # - assets/Yemen.png
-    # - assets/Zambia.png
-    # - assets/Zimbabwe.png
+    - assets/Yemen.png
+    - assets/Zambia.png
+   - assets/Zimbabwe.png
