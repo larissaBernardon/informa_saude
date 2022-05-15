@@ -1,45 +1,92 @@
-import 'package:location/location.dart';
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:typed_data';
+import 'dart:async';
 import 'package:mobx/mobx.dart';
 part 'map_controller.g.dart';
 
 class MapController = _MapController with _$MapController;
 
 abstract class _MapController with Store {
-  Location location = Location();
-  LocationData? currentLocation;
+  final Completer<GoogleMapController> googleMapController = Completer();
+  late BitmapDescriptor markerIcon;
 
-  Future getInitialLocation() async {
-    var _serviceEnabled = await location.serviceEnabled();
-    var _permissionStatus = await location.hasPermission();
+  @observable
+  Observable<Position?> position = Observable(null);
+  Set<Marker> markers = {};
 
+  @action
+  Future getCurrentLocation() async {
+    var _serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return;
+      return Future.error('Location services are disabled.');
+    }
+
+    var _permissionStatus = await Geolocator.checkPermission();
+
+    if (_permissionStatus == LocationPermission.denied) {
+      _permissionStatus = await Geolocator.requestPermission();
+      if (_permissionStatus == LocationPermission.denied) {
+        return Future.error('Location permissions are denied');
       }
     }
 
-    if (_permissionStatus == PermissionStatus.denied) {
-      _permissionStatus = await location.requestPermission();
-      if (_permissionStatus != PermissionStatus.granted) {
-        return;
-      }
+    if (_permissionStatus == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
     }
 
-    LocationData response = await location.getLocation();
-
-    currentLocation = response;
+    final positionResponse = await Geolocator.getCurrentPosition();
+    position = Observable(positionResponse);
+    navigateToPosition();
     return;
   }
 
-  CameraPosition getCameraPosition() {
-    return CameraPosition(
+  CameraPosition getInitialPosition() {
+    return const CameraPosition(
       target: LatLng(
-        currentLocation?.latitude ?? 37.42796133580664,
-        currentLocation?.longitude ?? -122.085749655962,
+        -30.0277,
+        -51.2287,
       ),
-      zoom: 14.4746,
+      zoom: 14,
+    );
+  }
+
+  Future<void> navigateToPosition() async {
+    final GoogleMapController controller = await googleMapController.future;
+    if (position.value != null) {
+      controller.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: LatLng(
+              position.value!.latitude,
+              position.value!.longitude,
+            ),
+            zoom: 15,
+          ),
+        ),
+      );
+    } else {
+      print("COULD NOT NAVIGATE BECAUSE POSITION VALUE IS NULL");
+    }
+  }
+
+  void addMarkers() {
+    markers.add(Marker(
+      icon: markerIcon,
+      markerId: const MarkerId('id'),
+      position: LatLng(
+        position.value!.latitude,
+        position.value!.longitude,
+      ),
+    ));
+  }
+
+  void setMarkersAppearence() async {
+    markerIcon = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(),
+      'assets/virus.png',
     );
   }
 }
