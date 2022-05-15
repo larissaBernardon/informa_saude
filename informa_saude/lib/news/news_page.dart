@@ -36,16 +36,6 @@ class NewsPage extends StatelessWidget {
     );
   }
 
-  Text _buildCardTitleNoticias(int index) {
-    return const Text(
-      'Notícias',
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w700,
-      ),
-    );
-  }
-
   Padding _buildCardItem({required CardType type}) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -156,26 +146,6 @@ class NewsPage extends StatelessWidget {
         iconData,
         size: 30,
         color: iconColor,
-      ),
-    );
-  }
-
-  Padding _buildTitleCovid19() {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
-      child: Text(
-        'COVID-19',
-        style: TextStyle(fontSize: 27, fontWeight: FontWeight.w600),
-      ),
-    );
-  }
-
-  Padding _buildTitleTwitter() {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(30, 30, 30, 10),
-      child: Text(
-        'Twitter Oficial',
-        style: TextStyle(fontSize: 27, fontWeight: FontWeight.w600),
       ),
     );
   }
