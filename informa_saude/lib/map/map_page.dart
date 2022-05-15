@@ -19,7 +19,7 @@ class MapWidget extends StatefulWidget {
 class MapSampleState extends State<MapWidget>
     with AutomaticKeepAliveClientMixin {
   @override
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => false;
 
   @override
   void initState() {
@@ -40,6 +40,11 @@ class MapSampleState extends State<MapWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple.shade400,
+        centerTitle: false,
+        title: Text('Mapa covid'),
+      ),
       body: GoogleMap(
         myLocationEnabled: true,
         mapType: MapType.normal,
@@ -57,7 +62,7 @@ class MapSampleState extends State<MapWidget>
           widget.controller.addMarkers();
           setState(() {});
         },
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.deepPurple.shade400,
         label: const Text('Estou com covid'),
         icon: const Icon(Icons.add),
       ),

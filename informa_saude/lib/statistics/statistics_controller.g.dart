@@ -13,13 +13,13 @@ mixin _$StatisticsController on _StatisticsControllerBase, Store {
       Atom(name: '_StatisticsControllerBase.countriesResponse');
 
   @override
-  ObservableFuture<List<Country>?> get countriesResponse {
+  List<Country>? get countriesResponse {
     _$countriesResponseAtom.reportRead();
     return super.countriesResponse;
   }
 
   @override
-  set countriesResponse(ObservableFuture<List<Country>?> value) {
+  set countriesResponse(List<Country>? value) {
     _$countriesResponseAtom.reportWrite(value, super.countriesResponse, () {
       super.countriesResponse = value;
     });
@@ -31,6 +31,15 @@ mixin _$StatisticsController on _StatisticsControllerBase, Store {
   @override
   Future<dynamic> getCountriesData() {
     return _$getCountriesDataAsyncAction.run(() => super.getCountriesData());
+  }
+
+  final _$getBrazilStatesDataAsyncAction =
+      AsyncAction('_StatisticsControllerBase.getBrazilStatesData');
+
+  @override
+  Future<dynamic> getBrazilStatesData() {
+    return _$getBrazilStatesDataAsyncAction
+        .run(() => super.getBrazilStatesData());
   }
 
   @override

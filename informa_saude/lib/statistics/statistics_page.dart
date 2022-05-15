@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:informa_saude/statistics/statistics_controller.dart';
+import 'package:mobx/mobx.dart';
 
 class StatisticsPage extends StatefulWidget {
   const StatisticsPage({
@@ -16,8 +18,8 @@ class StatisticsPage extends StatefulWidget {
 class _StatisticsPageState extends State<StatisticsPage> {
   @override
   void initState() {
-    //widget.controller.getCountriesData();
-    widget.controller.getBrazilStatesData();
+    widget.controller.getCountriesData();
+    //widget.controller.getBrazilStatesData();
     super.initState();
   }
 
@@ -29,19 +31,113 @@ class _StatisticsPageState extends State<StatisticsPage> {
         child: _buildAppBar(),
       ),
       extendBodyBehindAppBar: true,
-      body: Column(
+      body: Observer(
+        builder: (BuildContext context) {
+          if (widget.controller.countriesResponse != null) {
+            return _buildContentState();
+          } else {
+            return _buildLoadingState();
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildLoadingState() {
+    return const Padding(
+      padding: EdgeInsets.only(top: 300),
+      child: Center(child: CircularProgressIndicator()),
+    );
+  }
+
+  Widget _buildContentState() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 380,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // _buildBrazilCards(),
-          // _buildGlobalCards(),
+          const Padding(
+            padding: EdgeInsets.only(left: 15.0),
+            child: Text(
+              'Dados Globais',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+          ),
+          const SizedBox(height: 15),
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(left: 15),
+            scrollDirection: Axis.horizontal,
+            child: _buildGlobalIcons(),
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          const Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: Text(
+              'Dados Nacionais',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16),
+            ),
+          ),
+          const SizedBox(height: 15),
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(left: 15),
+            scrollDirection: Axis.horizontal,
+            child: _buildNationalInfo(),
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildCard() {
-    return Container(
-      height: 100,
-      width: 100,
+  Widget _buildGlobalIcons() {
+    return Row(
+      children: List.generate(
+        10,
+        (index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 3),
+            child: Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      'assets/${widget.controller.countriesResponse?[index].country}.png'),
+                ),
+                borderRadius: BorderRadius.circular(50),
+                // color: Colors.deepPurple,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildNationalInfo() {
+    return Row(
+      children: List.generate(
+        10,
+        (index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          child: Container(
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.deepPurple),
+          ),
+        ),
+      ),
     );
   }
 

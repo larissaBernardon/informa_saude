@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         showUnselectedLabels: true,
         currentIndex: widget.controller.pageSelected,
         selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.blue.shade600,
+        unselectedItemColor: Colors.deepPurple.shade600,
         items: _buildBottomItems(),
       ),
     );
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
         size: 22,
         color: widget.controller.isProfileSelected
             ? Colors.black
-            : Colors.blue.shade600,
+            : Colors.deepPurple.shade600,
       ),
       label: 'Perfil',
     );
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
         size: 22,
         color: widget.controller.isNewsSelected
             ? Colors.black
-            : Colors.blue.shade600,
+            : Colors.deepPurple.shade600,
       ),
       label: 'Informações',
     );
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
         size: 22,
         color: widget.controller.isMapSelected
             ? Colors.black
-            : Colors.blue.shade600,
+            : Colors.deepPurple.shade600,
       ),
       label: 'Mapa Covid',
     );
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
         size: 22,
         color: widget.controller.isStatisticsSelected
             ? Colors.black
-            : Colors.blue.shade600,
+            : Colors.deepPurple.shade600,
       ),
       label: 'Estatísticas',
     );

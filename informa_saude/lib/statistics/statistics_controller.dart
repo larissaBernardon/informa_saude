@@ -13,25 +13,25 @@ abstract class _StatisticsControllerBase with Store {
   );
 
   @observable
-  ObservableFuture<List<Country>?> countriesResponse =
-      ObservableFuture.value(null);
+  List<Country>? countriesResponse;
 
   @action
   Future getCountriesData() async {
     try {
       var response = await dio.get('/v1/countries');
       var responseData = response.data["data"];
-      countriesResponse = ObservableFuture.value(responseData.map((country) {
-        print(country);
+      countriesResponse = responseData.map<Country>((country) {
+        // print(country);
         return Country.fromJson(country);
-      }).toList());
+      }).toList();
 
-      print(countriesResponse.value?.first.country);
+      print(countriesResponse?.first.country);
     } catch (e) {
       print(e);
     }
   }
 
+  @action
   Future getBrazilStatesData() async {
     try {
       var response = await dio.get('/v1');
