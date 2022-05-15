@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:informa_saude/home/home_controller.dart';
 import 'package:informa_saude/map/map_controller.dart';
-
+import 'package:informa_saude/statistics/statistics_controller.dart';
 import '../map/map_page.dart';
 import '../news/news_page.dart';
 import '../profile/profile_page.dart';
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         showUnselectedLabels: true,
         currentIndex: widget.controller.pageSelected,
         selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.blue.shade600,
+        unselectedItemColor: Colors.deepPurple.shade600,
         items: _buildBottomItems(),
       ),
     );
@@ -56,7 +56,9 @@ class _HomePageState extends State<HomePage> {
       MapWidget(
         controller: MapController(),
       ),
-      const StatisticsPage(),
+      StatisticsPage(
+        controller: StatisticsController(),
+      ),
       const NewsPage(),
       const ProfilePage(),
     ];
@@ -78,7 +80,7 @@ class _HomePageState extends State<HomePage> {
         size: 22,
         color: widget.controller.isProfileSelected
             ? Colors.black
-            : Colors.blue.shade600,
+            : Colors.deepPurple.shade600,
       ),
       label: 'Perfil',
     );
@@ -91,7 +93,7 @@ class _HomePageState extends State<HomePage> {
         size: 22,
         color: widget.controller.isNewsSelected
             ? Colors.black
-            : Colors.blue.shade600,
+            : Colors.deepPurple.shade600,
       ),
       label: 'Informações',
     );
@@ -104,7 +106,7 @@ class _HomePageState extends State<HomePage> {
         size: 22,
         color: widget.controller.isMapSelected
             ? Colors.black
-            : Colors.blue.shade600,
+            : Colors.deepPurple.shade600,
       ),
       label: 'Mapa Covid',
     );
@@ -117,7 +119,7 @@ class _HomePageState extends State<HomePage> {
         size: 22,
         color: widget.controller.isStatisticsSelected
             ? Colors.black
-            : Colors.blue.shade600,
+            : Colors.deepPurple.shade600,
       ),
       label: 'Estatísticas',
     );

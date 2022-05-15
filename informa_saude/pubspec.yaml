@@ -1,43 +1,22 @@
 name: informa_saude
 description: A new Flutter project.
 
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
 environment:
   sdk: ">=2.16.1 <3.0.0"
 
-# Dependencies specify other packages that your package needs in order to work.
-# To automatically upgrade your package dependencies to the latest versions
-# consider running `flutter pub upgrade --major-versions`. Alternatively,
-# dependencies can be manually updated by changing the version numbers below to
-# the latest version available on pub.dev. To see which dependencies have newer
-# versions available, run `flutter pub outdated`.
 dependencies:
   mobx: ^2.0.6+1
   geolocator: ^8.2.1
   google_maps_flutter: ^2.1.4
+  dio: ^4.0.6
   flutter_mobx: ^2.0.4
   flutter:
     sdk: flutter
-    
 
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
@@ -47,51 +26,215 @@ dev_dependencies:
 
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
  
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/virus.png
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+    - assets/backkground.png
+    - assets/man.png
+    - assets/computer.png
+    - assets/flower.png
+    - assets/women-handup.png
+    - assets/women-laptop.png
+    - assets/Afghanistan.png
+    - assets/Albania.png
+    - assets/Algeria.png
+    - assets/Andorra.png
+    - assets/Angola.png
+    - assets/Antarctica.png
+    - assets/Antigua and Barbuda.png
+    - assets/Argentina.png
+    - assets/Armenia.png
+    - assets/Australia.png
+    - assets/Austria.png
+    - assets/Azerbaijan.png
+    - assets/Bahamas.png
+    - assets/Bahrain.png
+    - assets/Bangladesh.png
+    - assets/Barbados.png
+    - assets/Belarus.png
+    - assets/Belgium.png
+    - assets/Belize.png
+    - assets/Benin.png
+    - assets/Bhutan.png
+    - assets/Bolivia.png
+    - assets/Bosnia and Herzegovina.png
+    - assets/Botswana.png
+    - assets/Brazil.png
+    - assets/Brunei.png
+    - assets/Bulgaria.png
+    - assets/Burkina Faso.png
+    - assets/Burma.png
+    - assets/Burundi.png
+    - assets/Cabo Verde.png
+    - assets/Cambodia.png
+    - assets/Cameroon.png
+    - assets/Canada.png
+    - assets/Central African Republic.png
+    - assets/Chad.png
+    - assets/Chile.png
+    - assets/China.png
+    - assets/Colombia.png
+    - assets/Comoros.png
+    - assets/Congo (Brazzaville).png
+    - assets/Congo (Kinshasa).png
+    - assets/Costa Rica.png
+    - assets/Cote d'Ivoire.png
+    - assets/Croatia.png
+    - assets/Cuba.png
+    - assets/Cyprus.png
+    - assets/Czechia.png
+    - assets/Denmark.png
+    # - assets/Diamond Princess.png
+    - assets/Djibouti.png
+    - assets/Dominica.png
+    - assets/Dominican Republic.png
+    - assets/Ecuador.png
+    - assets/Egypt.png
+    - assets/El Salvador.png
+    - assets/Equatorial Guinea.png
+    - assets/Eritrea.png
+    - assets/Estonia.png
+    - assets/Eswatini.png
+    - assets/Ethiopia.png
+    - assets/Fiji.png
+    - assets/Finland.png
+    - assets/France.png
+    - assets/Gabon.png
+    - assets/Gambia.png
+    - assets/Georgia.png
+    - assets/Germany.png
+    - assets/Ghana.png
+    - assets/Greece.png
+    - assets/Grenada.png
+    - assets/Guatemala.png
+    - assets/Guinea.png
+    - assets/Guinea-Bissau.png
+    - assets/Guyana.png
+    - assets/Haiti.png
+    - assets/Holy See.png
+    - assets/Honduras.png
+    - assets/Hungary.png
+    - assets/Iceland.png
+    - assets/India.png
+    - assets/Indonesia.png
+    - assets/Iran.png
+    - assets/Iraq.png
+    - assets/Ireland.png
+    - assets/Israel.png
+    - assets/Italy.png
+    - assets/Jamaica.png
+    - assets/Japan.png
+    - assets/Jordan.png
+    - assets/Kazakhstan.png
+    - assets/Kenya.png
+    - assets/Kiribati.png
+    - assets/Korea, North.png
+    - assets/Korea, South.png
+    - assets/Kosovo.png
+    - assets/Kuwait.png
+    - assets/Kyrgyzstan.png
+    - assets/Laos.png
+    - assets/Latvia.png
+    - assets/Lebanon.png
+    - assets/Lesotho.png
+    - assets/Liberia.png
+    - assets/Libya.png
+    - assets/Liechtenstein.png
+    - assets/Lithuania.png
+    - assets/Luxembourg.png
+    # - assets/MS Zaandam.png
+    - assets/Madagascar.png
+    - assets/Malawi.png
+    - assets/Malaysia.png
+    - assets/Maldives.png
+    - assets/Mali.png
+    - assets/Malta.png
+    - assets/Marshall Islands.png
+    - assets/Mauritania.png
+    - assets/Mauritius.png
+    - assets/Mexico.png
+    - assets/Micronesia.png
+    - assets/Moldova.png
+    - assets/Monaco.png
+    - assets/Mongolia.png
+    - assets/Montenegro.png
+    - assets/Morocco.png
+    - assets/Mozambique.png
+    - assets/Namibia.png
+    - assets/Nepal.png
+    - assets/Netherlands.png
+    - assets/New Zealand.png
+    - assets/Nicaragua.png
+    - assets/Niger.png
+    - assets/Nigeria.png
+    - assets/North Macedonia.png
+    - assets/Norway.png
+    - assets/Oman.png
+    - assets/Pakistan.png
+    - assets/Palau.png
+    - assets/Panama.png
+    - assets/Papua New Guinea.png
+    - assets/Paraguay.png
+    - assets/Peru.png
+    - assets/Philippines.png
+    - assets/Poland.png
+    - assets/Portugal.png
+    - assets/Qatar.png
+    - assets/Romania.png
+    - assets/Russia.png
+    - assets/Rwanda.png
+    - assets/Saint Kitts and Nevis.png
+    - assets/Saint Lucia.png
+    - assets/Saint Vincent and the Grenadines.png
+    - assets/Samoa.png
+    - assets/San Marino.png
+    - assets/Sao Tome and Principe.png
+    - assets/Saudi Arabia.png
+    - assets/Senegal.png
+    - assets/Serbia.png
+    - assets/Seychelles.png
+    - assets/Sierra Leone.png
+    - assets/Singapore.png
+    - assets/Slovakia.png
+    - assets/Slovenia.png
+    - assets/Solomon Islands.png
+    - assets/Somalia.png
+    - assets/background.png
+    - assets/South Africa.png
+    - assets/South Sudan.png
+    - assets/Spain.png
+    - assets/Sri Lanka.png
+    - assets/Sudan.png
+    - assets/Summer Olympics 2020.png
+    - assets/Suriname.png
+    - assets/Sweden.png
+    - assets/Switzerland.png
+    - assets/Syria.png
+    - assets/Taiwan*.png
+    - assets/Tajikistan.png
+    - assets/Tanzania.png
+    - assets/Thailand.png
+    - assets/Timor-Leste.png
+    - assets/Togo.png
+    - assets/Tonga.png
+    - assets/Trinidad and Tobago.png
+    - assets/Tunisia.png
+    - assets/Turkey.png
+    - assets/US.png
+    - assets/Uganda.png
+    - assets/Ukraine.png
+    - assets/United Arab Emirates.png
+    - assets/United Kingdom.png
+    - assets/Uruguay.png
+    - assets/Uzbekistan.png
+    - assets/Vanuatu.png
+    - assets/Venezuela.png
+    - assets/Vietnam.png
+    # - assets/West Bank and Gaza.png
+    # - assets/Winter Olympics 2022.png
+    - assets/Yemen.png
+    - assets/Zambia.png
+    - assets/Zimbabwe.png
