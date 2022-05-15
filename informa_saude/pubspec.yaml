@@ -145,7 +145,7 @@ flutter:
     - assets/Liechtenstein.png
     - assets/Lithuania.png
     - assets/Luxembourg.png
-    - assets/MS Zaandam.png
+    # - assets/MS Zaandam.png
     - assets/Madagascar.png
     - assets/Malawi.png
     - assets/Malaysia.png
@@ -237,4 +237,4 @@ flutter:
     # - assets/Winter Olympics 2022.png
     - assets/Yemen.png
     - assets/Zambia.png
-   - assets/Zimbabwe.png
+    - assets/Zimbabwe.png

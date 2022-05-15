@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:informa_saude/statistics/statistics_controller.dart';
-import 'package:mobx/mobx.dart';
 
 class StatisticsPage extends StatefulWidget {
   const StatisticsPage({
@@ -116,7 +115,7 @@ class _StatisticsPageState extends State<StatisticsPage>
               height: 80,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  fit: BoxFit.fill,
+                  fit: BoxFit.scaleDown,
                   image: AssetImage(
                     _getAssetForCountry(index),
                   ),
