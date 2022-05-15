@@ -25,7 +25,9 @@ abstract class _StatisticsControllerBase with Store {
         return Country.fromJson(country);
       }).toList();
 
-      print(countriesResponse?.first.country);
+      countriesResponse?.forEach((country) {
+        print(country.country);
+      });
     } catch (e) {
       print(e);
     }

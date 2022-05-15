@@ -15,7 +15,11 @@ class StatisticsPage extends StatefulWidget {
   State<StatisticsPage> createState() => _StatisticsPageState();
 }
 
-class _StatisticsPageState extends State<StatisticsPage> {
+class _StatisticsPageState extends State<StatisticsPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   void initState() {
     widget.controller.getCountriesData();
@@ -99,9 +103,11 @@ class _StatisticsPageState extends State<StatisticsPage> {
   }
 
   Widget _buildGlobalIcons() {
+    // random countries
+    widget.controller.countriesResponse!.shuffle();
     return Row(
       children: List.generate(
-        10,
+        widget.controller.countriesResponse!.length,
         (index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3),
@@ -110,17 +116,27 @@ class _StatisticsPageState extends State<StatisticsPage> {
               height: 80,
               decoration: BoxDecoration(
                 image: DecorationImage(
+                  fit: BoxFit.fill,
                   image: AssetImage(
-                      'assets/${widget.controller.countriesResponse?[index].country}.png'),
+                    _getAssetForCountry(index),
+                  ),
                 ),
                 borderRadius: BorderRadius.circular(50),
-                // color: Colors.deepPurple,
+                color: Colors.deepPurple,
               ),
             ),
           );
         },
       ),
     );
+  }
+
+  String _getAssetForCountry(int index) {
+    try {
+      return 'assets/${widget.controller.countriesResponse?[index].country}.png';
+    } catch (error) {
+      return 'assets/background.png';
+    }
   }
 
   Widget _buildNationalInfo() {
@@ -175,7 +191,9 @@ class _StatisticsPageState extends State<StatisticsPage> {
             height: 250,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/man.png'), fit: BoxFit.scaleDown),
+                image: AssetImage('assets/man.png'),
+                fit: BoxFit.scaleDown,
+              ),
             ),
           ),
           Container(
@@ -183,8 +201,9 @@ class _StatisticsPageState extends State<StatisticsPage> {
             height: 100,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage('assets/flower.png'),
-                  fit: BoxFit.scaleDown),
+                image: AssetImage('assets/flower.png'),
+                fit: BoxFit.scaleDown,
+              ),
             ),
           )
         ],
