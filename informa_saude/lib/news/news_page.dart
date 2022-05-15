@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:informa_saude/news/card_detail.dart';
 
 enum CardType {
   twitter,
@@ -22,13 +23,13 @@ class NewsPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _buildSectionTitle('Twitter oficial'),
-              _buildCardItem(type: CardType.twitter),
+              _buildCardItem(context: context, type: CardType.twitter),
               _buildSectionTitle('Notícias'),
-              _buildCardItem(type: CardType.fakeNews),
+              _buildCardItem(context: context, type: CardType.fakeNews),
               _buildSectionTitle('COVID-19'),
-              _buildCardItem(type: CardType.covid),
-              _buildCardItem(type: CardType.sintomas),
-              _buildCardItem(type: CardType.transmissao),
+              _buildCardItem(context: context, type: CardType.covid),
+              _buildCardItem(context: context, type: CardType.sintomas),
+              _buildCardItem(context: context, type: CardType.transmissao),
             ],
           ),
         ),
@@ -36,13 +37,14 @@ class NewsPage extends StatelessWidget {
     );
   }
 
-  Padding _buildCardItem({required CardType type}) {
+  Padding _buildCardItem({
+    required BuildContext context,
+    required CardType type,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: GestureDetector(
-        onTap: () {
-          print("tapped on container");
-        },
+        onTap: () => _navigateToRoute(context: context, type: type),
         child: Container(
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,6 +70,38 @@ class NewsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _navigateToRoute({
+    required BuildContext context,
+    required CardType type,
+  }) {
+    var headerTitle = '';
+    var content = '';
+
+    if (type == CardType.covid) {
+      headerTitle = 'Covid';
+      content = 'Saiba aqui sobre covid';
+    }
+
+    if (type == CardType.sintomas) {
+      headerTitle = 'Sintomas';
+      content = 'Texto sobre sintomas aqui';
+    }
+
+    if (type != CardType.twitter && type != CardType.fakeNews) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CardDetail(
+            headerTitle: headerTitle,
+            content: content,
+          ),
+        ),
+      );
+    } else {
+      // se for um dos dois abre url
+    }
   }
 
   Text _buildCardTitle(CardType type) {
