@@ -54,49 +54,51 @@ class _StatisticsPageState extends State<StatisticsPage>
   }
 
   Widget _buildContentState() {
-    return Padding(
-      padding: const EdgeInsets.only(
-        top: 380,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 15.0),
-            child: Text(
-              'Dados Globais',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(
+          top: 380,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 15.0),
+              child: Text(
+                'Dados Globais',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
             ),
-          ),
-          const SizedBox(height: 15),
-          SingleChildScrollView(
-            padding: const EdgeInsets.only(left: 15),
-            scrollDirection: Axis.horizontal,
-            child: _buildGlobalIcons(),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          const Padding(
-            padding: const EdgeInsets.only(left: 15),
-            child: Text(
-              'Dados Nacionais',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16),
+            const SizedBox(height: 15),
+            SingleChildScrollView(
+              padding: const EdgeInsets.only(left: 15),
+              scrollDirection: Axis.horizontal,
+              child: _buildGlobalIcons(),
             ),
-          ),
-          const SizedBox(height: 15),
-          SingleChildScrollView(
-            padding: const EdgeInsets.only(left: 15),
-            scrollDirection: Axis.horizontal,
-            child: _buildNationalInfo(),
-          ),
-        ],
+            const SizedBox(
+              height: 40,
+            ),
+            const Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Text(
+                'Dados Nacionais',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+            ),
+            const SizedBox(height: 15),
+            SingleChildScrollView(
+              padding: const EdgeInsets.only(left: 15),
+              scrollDirection: Axis.horizontal,
+              child: _buildNationalInfo(),
+            ),
+          ],
+        ),
       ),
     );
   }
