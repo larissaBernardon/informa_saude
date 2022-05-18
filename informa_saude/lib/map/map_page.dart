@@ -19,21 +19,12 @@ class MapWidget extends StatefulWidget {
 class MapSampleState extends State<MapWidget>
     with AutomaticKeepAliveClientMixin {
   @override
-  bool get wantKeepAlive => false;
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
-    ReactionDisposer disposer = reaction(
-      (_) => widget.controller.position.value,
-      (newPosition) {
-        widget.controller.navigateToPosition();
-      },
-    );
-
     widget.controller.setMarkersAppearence();
-
     widget.controller.getCurrentLocation();
-    disposer();
     super.initState();
   }
 

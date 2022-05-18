@@ -17,12 +17,12 @@ class StatisticsPage extends StatefulWidget {
 class _StatisticsPageState extends State<StatisticsPage>
     with AutomaticKeepAliveClientMixin {
   @override
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => false;
 
   @override
   void initState() {
     widget.controller.getCountriesData();
-    //widget.controller.getBrazilStatesData();
+    widget.controller.getBrazilStatesData();
     super.initState();
   }
 
