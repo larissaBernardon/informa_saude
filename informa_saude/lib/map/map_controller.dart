@@ -63,7 +63,7 @@ abstract class _MapController with Store {
               position.value!.latitude,
               position.value!.longitude,
             ),
-            zoom: 15,
+            zoom: 16,
           ),
         ),
       );
@@ -73,14 +73,16 @@ abstract class _MapController with Store {
   }
 
   void addMarkers() {
-    markers.add(Marker(
-      icon: markerIcon,
-      markerId: const MarkerId('id'),
-      position: LatLng(
-        position.value!.latitude,
-        position.value!.longitude,
+    markers.add(
+      Marker(
+        icon: markerIcon,
+        markerId: const MarkerId('id'),
+        position: LatLng(
+          position.value?.latitude ?? -30.03527617376084,
+          position.value?.longitude ?? -51.226622829414026,
+        ),
       ),
-    ));
+    );
   }
 
   void setMarkersAppearence() async {
