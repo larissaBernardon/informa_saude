@@ -117,25 +117,37 @@ class _StatisticsPageState extends State<StatisticsPage>
         widget.controller.countriesResponse!.length,
         (index) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 3),
-            child: Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.scaleDown,
-                  image: AssetImage(
-                    _getAssetForCountry(index),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Column(
+              children: [
+                Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.fitWidth,
+                      image: AssetImage(
+                        _getAssetForCountry(index),
+                      ),
+                    ),
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.deepPurple,
                   ),
                 ),
-                borderRadius: BorderRadius.circular(50),
-                color: Colors.deepPurple,
-              ),
+                const SizedBox(height: 15),
+                _buildCountryName(
+                  widget.controller.countriesResponse?[index].country ?? 'name',
+                ),
+              ],
             ),
           );
         },
       ),
     );
+  }
+
+  Text _buildCountryName(String name) {
+    return Text(name.length > 10 ? '${name.substring(0, 10)}...' : name);
   }
 
   String _getAssetForCountry(int index) {
