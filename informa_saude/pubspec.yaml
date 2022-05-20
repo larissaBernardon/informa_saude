@@ -16,6 +16,8 @@ dependencies:
   flutter_mobx: ^2.0.4
   flutter:
     sdk: flutter
+  google_fonts: ^2.3.2
+  
 
   cupertino_icons: ^1.0.2
 

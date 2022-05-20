@@ -80,13 +80,15 @@ class NewsPage extends StatelessWidget {
     var content = '';
 
     if (type == CardType.covid) {
-      headerTitle = 'Covid';
-      content = 'Saiba aqui sobre covid';
+      headerTitle = 'O que é COVID-19?';
+      content =
+          'Os coronavírus são uma grande família de vírus comuns em muitas espécies diferentes de animais, incluindo camelos, gado, gatos e morcegos. Raramente, os coronavírus que infectam animais podem infectar pessoas, como exemplo do MERS-CoV e SARS-CovV.\n\nRecentemente, em dezembro de 2019, houve a transmissão de um novo coronavírus (SARS-CoV-2), o qual foi identificado em Wuhan na China e causou a COVID-19, sendo em seguida disseminada e transmitida pessoa a pessoa.\n\nA COVID-19 é uma doença causada pelo coronavírus, denominado SARS-CoV-2, que apresenta um espectro clínico variando de infecções assintomáticas a quadros graves. De acordo com a Organização Mundial de Saúde, a maioria (cerca de 80%) dos pacientes com COVID-19 podem ser assintomáticos ou oligossintomáticos (poucos sintomas), e aproximadamente 20% dos casos detectados requer atendimento hospitalar por apresentarem dificuldade respiratória, dos quais aproximadamente 5% podem necessitar de suporte ventilatório.';
     }
 
     if (type == CardType.sintomas) {
-      headerTitle = 'Sintomas';
-      content = 'Texto sobre sintomas aqui';
+      headerTitle = 'Quais são os sintomas?';
+      content =
+          'Caso assintomático: caracterizado por teste laboratorial positivo para covid-19 e ausência de sintomas;\n\nCaso leve: caracterizado a partir da presença de sintomas não específicos, como tosse, dor e garganta ou coriza, seguido, ou não, de perda de olfato e paladar, diarreia, dor abdominal, febre, calafrios, mialgia, fadiga e/ou cefaleia;\n\nCaso moderado: os sintomas mais frequentes podem incluir desde sinais leves da doença, como tosse persistente e febre persistente diária, até sinais de piora progressiva de outro sintoma relacionado à covid-19 (fraqueza, prostração, falta de apetite, diarreia), além da presença de pneumonia sem sinais ou sintomas de gravidade; \n\nCaso grave: considera-se a Síndrome Respiratória Aguda Grave (Síndrome Gripal que apresente dificuldade de respirar, desconforto respiratório ou pressão persistente no tórax ou saturação de oxigênio menor que 95% em ar ambiente ou coloração azulada de lábios ou rosto;\n\nCaso crítico: os principais sintomas são sepse, síndrome do desconforto respiratório agudo, síndrome do desconforto respiratório agudo, insuficiência respiratória grave, disfunção de múltiplos órgãos, pneumonia grave, necessidade de suporte respiratório e internações em unidades de terapia intensiva.\n\nPara crianças, os principais sintomas incluem aceleração o ritmo respiratório, baixa saturação de oxigenação no sangue, desconforto respiratório, alteração da consciência, desidratação, dificuldade para se alimentar, coloração azulada, letargia, convulsões, recusa alimentar.';
     }
 
     if (type != CardType.twitter && type != CardType.fakeNews) {
@@ -192,6 +194,7 @@ class NewsPage extends StatelessWidget {
         style: const TextStyle(
           fontSize: 27,
           fontWeight: FontWeight.w600,
+          fontFamily: '',
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CardDetail extends StatelessWidget {
   const CardDetail({
@@ -16,16 +17,18 @@ class CardDetail extends StatelessWidget {
         title: Text(headerTitle),
         backgroundColor: Colors.deepPurple.shade500,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 40,
-        ),
-        child: Text(
-          content,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 40,
+          ),
+          child: Text(
+            content,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ),
