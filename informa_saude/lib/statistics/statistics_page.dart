@@ -235,7 +235,9 @@ class StateCard extends StatelessWidget {
           BoxShadow(
             color: Colors.deepPurple.withOpacity(0.8),
             spreadRadius: 1,
-            offset: Offset(1, 2),
+            blurRadius: 2,
+            blurStyle: BlurStyle.outer,
+            offset: Offset(1, 1),
           ),
         ],
       ),
