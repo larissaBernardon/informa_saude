@@ -25,6 +25,22 @@ mixin _$StatisticsController on _StatisticsControllerBase, Store {
     });
   }
 
+  final _$statesResponseAtom =
+      Atom(name: '_StatisticsControllerBase.statesResponse');
+
+  @override
+  List<State>? get statesResponse {
+    _$statesResponseAtom.reportRead();
+    return super.statesResponse;
+  }
+
+  @override
+  set statesResponse(List<State>? value) {
+    _$statesResponseAtom.reportWrite(value, super.statesResponse, () {
+      super.statesResponse = value;
+    });
+  }
+
   final _$getCountriesDataAsyncAction =
       AsyncAction('_StatisticsControllerBase.getCountriesData');
 
@@ -45,7 +61,8 @@ mixin _$StatisticsController on _StatisticsControllerBase, Store {
   @override
   String toString() {
     return '''
-countriesResponse: ${countriesResponse}
+countriesResponse: ${countriesResponse},
+statesResponse: ${statesResponse}
     ''';
   }
 }
