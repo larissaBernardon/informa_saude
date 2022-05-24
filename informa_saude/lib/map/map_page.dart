@@ -44,13 +44,13 @@ class MapSampleState extends State<MapWidget>
         onMapCreated: (GoogleMapController controller) {
           widget.controller.googleMapController.complete(controller);
           setState(() {
-            //widget.controller.addMarkers();
+            widget.controller.addInitialMarkers();
           });
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          widget.controller.addMarkers();
+          widget.controller.addCovidMarker();
           setState(() {});
         },
         backgroundColor: Colors.deepPurple.shade400,
