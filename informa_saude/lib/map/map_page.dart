@@ -19,7 +19,7 @@ class MapWidget extends StatefulWidget {
 class MapSampleState extends State<MapWidget>
     with AutomaticKeepAliveClientMixin {
   @override
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => false;
 
   @override
   void initState() {
