@@ -26,8 +26,8 @@ class CardDetail extends StatelessWidget {
           child: Text(
             content,
             style: GoogleFonts.lato(
-              fontSize: 19,
-              fontWeight: FontWeight.w800,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

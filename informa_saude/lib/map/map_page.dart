@@ -54,7 +54,7 @@ class MapSampleState extends State<MapWidget>
           setState(() {});
         },
         backgroundColor: Colors.deepPurple.shade400,
-        label: const Text('Estou com covid'),
+        label: const Text('Reportar covid'),
         icon: const Icon(Icons.add),
       ),
     );
