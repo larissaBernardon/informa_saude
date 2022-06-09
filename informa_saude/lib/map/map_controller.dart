@@ -81,6 +81,19 @@ abstract class _MapController with Store {
           -30.032475010511803,
           -51.22722920795883,
         ),
+        alpha: 0.4,
+      ),
+    );
+
+    markers.add(
+      Marker(
+        icon: markerIcon,
+        markerId: const MarkerId('ZaffFernandoMachado'),
+        position: const LatLng(
+          -30.034900921177577,
+          -51.22879420724154,
+        ),
+        alpha: 0.4,
       ),
     );
 
@@ -92,6 +105,7 @@ abstract class _MapController with Store {
           -30.034824948453142,
           -51.228859991012776,
         ),
+        alpha: 0.4,
       ),
     );
 
@@ -103,6 +117,7 @@ abstract class _MapController with Store {
           -30.037787834260566,
           -51.22417148971547,
         ),
+        alpha: 0.4,
       ),
     );
 
@@ -114,6 +129,7 @@ abstract class _MapController with Store {
           -30.03486260917668,
           -51.22713716821253,
         ),
+        alpha: 0.4,
       ),
     );
 
@@ -125,6 +141,7 @@ abstract class _MapController with Store {
           -30.034826472459592,
           -51.2231612664405,
         ),
+        alpha: 0.4,
       ),
     );
   }
@@ -144,8 +161,8 @@ abstract class _MapController with Store {
 
   void setMarkersAppearence() async {
     markerIcon = await BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(),
-      'assets/virus.png',
+      const ImageConfiguration(size: Size.square(10)),
+      'assets/raio.png',
     );
   }
 }
