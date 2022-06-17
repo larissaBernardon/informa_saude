@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mobx/mobx.dart';
-
+import 'package:hive/hive.dart';
+import 'package:informa_saude/reportFlow/report_view.dart';
 import 'map_controller.dart';
 
 class MapWidget extends StatefulWidget {
@@ -34,7 +34,7 @@ class MapSampleState extends State<MapWidget>
       appBar: AppBar(
         backgroundColor: Colors.deepPurple.shade400,
         centerTitle: false,
-        title: Text('Mapa covid'),
+        title: const Text('Situação viral'),
       ),
       body: GoogleMap(
         myLocationEnabled: true,
@@ -50,14 +50,49 @@ class MapSampleState extends State<MapWidget>
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          widget.controller.addCovidMarker();
-          setState(() {});
+          // widget.controller.addCovidMarker();
+          // setState(() {});
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ReportInformationView(
+                formFieldTitle: 'Informe seu email',
+                buttonTitle: 'Avançar',
+                onButtonTapped: (value) {
+                  // salvar email local
+                  saveUserDataLocal('email', value);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ReportInformationView(
+                        formFieldTitle: 'Informe seu nome',
+                        buttonTitle: 'Avançar',
+                        onButtonTapped: (value) {
+                          // salvar nome local
+                          saveUserDataLocal('nome', value);
+                          // navegar para os steps de report
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          );
         },
         backgroundColor: Colors.deepPurple.shade400,
         label: const Text('Reportar covid'),
         icon: const Icon(Icons.add),
       ),
     );
+  }
+
+  void saveUserDataLocal(
+    String key,
+    String value,
+  ) {
+    final userBox = Hive.box('user');
+    userBox.put(key, value);
   }
 
   void updateState() {
