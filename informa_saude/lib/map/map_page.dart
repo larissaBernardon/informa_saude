@@ -50,39 +50,64 @@ class MapSampleState extends State<MapWidget>
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          // widget.controller.addCovidMarker();
-          // setState(() {});
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ReportInformationView(
-                formFieldTitle: 'Informe seu email',
-                buttonTitle: 'Avançar',
-                onButtonTapped: (value) {
-                  // salvar email local
-                  saveUserDataLocal('email', value);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ReportInformationView(
-                        formFieldTitle: 'Informe seu nome',
-                        buttonTitle: 'Avançar',
-                        onButtonTapped: (value) {
-                          // salvar nome local
-                          saveUserDataLocal('nome', value);
-                          // navegar para os steps de report
-                        },
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          );
+          final userBox = Hive.box('user');
+          if (userBox.get('email') == null) {
+            goToUserDataReportFlow();
+          } else {
+            goToReportFlow();
+          }
         },
         backgroundColor: Colors.deepPurple.shade400,
         label: const Text('Reportar covid'),
         icon: const Icon(Icons.add),
+      ),
+    );
+  }
+
+  void goToReportFlow() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ReportInformationView(
+          formFieldTitle: 'Insira o nome da doença',
+          buttonTitle: 'Avançar',
+          onButtonTapped: (value) {
+            // to do - integraçao
+            widget.controller.addCovidMarker();
+            setState(() {});
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
+  }
+
+  void goToUserDataReportFlow() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ReportInformationView(
+          formFieldTitle: 'Informe seu email',
+          buttonTitle: 'Avançar',
+          onButtonTapped: (value) {
+            // salvar email local
+            saveUserDataLocal('email', value);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ReportInformationView(
+                  formFieldTitle: 'Informe seu nome',
+                  buttonTitle: 'Avançar',
+                  onButtonTapped: (value) {
+                    // salvar nome local
+                    saveUserDataLocal('nome', value);
+                    // navegar para os steps de report
+                  },
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
