@@ -155,6 +155,7 @@ abstract class _MapController with Store {
           position.value?.latitude ?? -30.03527617376084,
           position.value?.longitude ?? -51.226622829414026,
         ),
+        alpha: 0.4,
       ),
     );
   }

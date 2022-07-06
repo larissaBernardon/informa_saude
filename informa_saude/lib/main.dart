@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:informa_saude/home/home_page.dart';
-
+import 'package:hive/hive.dart';
 import 'home/home_controller.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  await Hive.openBox('user');
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key})
+      : super(
+          key: key,
+        );
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
