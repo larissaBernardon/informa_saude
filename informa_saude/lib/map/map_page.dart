@@ -76,7 +76,7 @@ class MapSampleState extends State<MapWidget>
           formFieldTitle: 'Insira o nome da doença',
           buttonTitle: 'Avançar',
           onButtonTapped: (value) {
-            // to do - integraçao
+            widget.controller.sendReport();
             widget.controller.addCovidMarker();
             setState(() {});
             Navigator.pop(context);

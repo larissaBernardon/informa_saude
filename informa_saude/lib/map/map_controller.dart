@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:hive/hive.dart';
 import 'package:informa_saude/models/report.dart';
 import 'dart:async';
 import 'package:mobx/mobx.dart';
@@ -44,13 +45,21 @@ abstract class _MapController with Store {
 
   @action
   Future sendReport() async {
-    var params = {
-      "item": "itemx",
-      "options": jsonEncode([1, 2, 3]),
-    };
+    try {
+      final userBox = Hive.box('user');
+      var params = {
+        "reporter": "${userBox.get('email')}",
+        "latitude": "${position.value?.latitude}",
+        "longitude": "${position.value?.longitude}",
+        "report_type": 1,
+        "confirmed": 1,
+        "active": 1
+      };
 
-    final response = await dio.post("/report", data: jsonEncode(params));
-    print(response);
+      await dio.post("/report", data: jsonEncode(params));
+    } catch (error) {
+      print(error);
+    }
   }
 
   @action
