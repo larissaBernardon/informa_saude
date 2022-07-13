@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class ReportInformationView extends StatelessWidget {
   ReportInformationView({
     required this.formFieldTitle,
     required this.buttonTitle,
+    required this.screenTitle,
     required this.onButtonTapped,
     Key? key,
   }) : super(key: key);
 
   final String formFieldTitle;
   final String buttonTitle;
+  final String screenTitle;
   final Function(String value) onButtonTapped;
   final textController = TextEditingController();
 
@@ -29,10 +30,21 @@ class ReportInformationView extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.3,
+            const SizedBox(
+              height: 30,
+            ),
+            Text(
+              screenTitle,
+              style: const TextStyle(
+                color: Colors.deepPurple,
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 40,
             ),
             TextFormField(
               controller: textController,

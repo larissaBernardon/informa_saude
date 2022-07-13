@@ -49,14 +49,14 @@ abstract class _MapController with Store {
       final userBox = Hive.box('user');
       var params = {
         "reporter": "${userBox.get('email')}",
-        "latitude": "${position.value?.latitude}",
-        "longitude": "${position.value?.longitude}",
+        "latitude": "${position.value?.latitude.toInt()}",
+        "longitude": "${position.value?.longitude.toInt()}",
         "report_type": 1,
         "confirmed": 1,
         "active": 1
       };
 
-      await dio.post("/report", data: jsonEncode(params));
+      // await dio.post("/report", data: jsonEncode(params));
     } catch (error) {
       print(error);
     }
@@ -125,7 +125,8 @@ abstract class _MapController with Store {
           Marker(
             icon: markerIcon,
             markerId: MarkerId("${reportData.id}"),
-            position: LatLng(reportData.latitude, reportData.longitude),
+            position: LatLng(reportData.latitude.toDouble(),
+                reportData.longitude.toDouble()),
             alpha: 0.4,
           ),
         );
@@ -133,21 +134,23 @@ abstract class _MapController with Store {
     );
   }
 
-  void addCovidMarker() {
+  void addCovidMarker() async {
+    await setMarkersAppearence();
+
     markers.add(
       Marker(
         icon: markerIcon,
         markerId: const MarkerId('id'),
-        position: LatLng(
-          position.value?.latitude ?? -30.03527617376084,
-          position.value?.longitude ?? -51.226622829414026,
+        position: const LatLng(
+          -30.03527617376084,
+          -51.226622829414026,
         ),
         alpha: 0.4,
       ),
     );
   }
 
-  void setMarkersAppearence() async {
+  Future setMarkersAppearence() async {
     markerIcon = await BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(size: Size.square(10)),
       'assets/raio.png',

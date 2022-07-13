@@ -73,13 +73,20 @@ class MapSampleState extends State<MapWidget>
       context,
       MaterialPageRoute(
         builder: (context) => ReportInformationView(
+          screenTitle: "Informe a doença",
           formFieldTitle: 'Insira o nome da doença',
           buttonTitle: 'Avançar',
           onButtonTapped: (value) {
-            widget.controller.sendReport();
             widget.controller.addCovidMarker();
             setState(() {});
             Navigator.pop(context);
+
+            const snackBar = SnackBar(
+              backgroundColor: Colors.green,
+              content: Text('Report adicionado com sucesso!'),
+            );
+
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
         ),
       ),
@@ -91,21 +98,21 @@ class MapSampleState extends State<MapWidget>
       context,
       MaterialPageRoute(
         builder: (context) => ReportInformationView(
-          formFieldTitle: 'Informe seu email',
+          screenTitle: "Informe seu email",
+          formFieldTitle: '1. Informe seu email',
           buttonTitle: 'Avançar',
-          onButtonTapped: (value) {
-            // salvar email local
+          onButtonTapped: (value) async {
             saveUserDataLocal('email', value);
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => ReportInformationView(
-                  formFieldTitle: 'Informe seu nome',
+                  screenTitle: "Informe seu nome",
+                  formFieldTitle: '2. Informe seu nome completo',
                   buttonTitle: 'Avançar',
                   onButtonTapped: (value) {
-                    // salvar nome local
                     saveUserDataLocal('nome', value);
-                    // navegar para os steps de report
+                    Navigator.pop(context);
                   },
                 ),
               ),

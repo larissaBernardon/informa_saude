@@ -17,7 +17,7 @@ class ReportData {
 
   static ReportData fromJson(Map<String, dynamic> json) {
     return ReportData._(
-      id: json["id_report"],
+      id: json['id_report'],
       latitude: json['latitude'],
       longitude: json['longitude'],
       report_type: json['report_type'],
