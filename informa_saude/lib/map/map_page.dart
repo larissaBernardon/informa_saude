@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:informa_saude/reportFlow/report_view.dart';
@@ -23,6 +24,7 @@ class MapSampleState extends State<MapWidget>
 
   @override
   void initState() {
+    widget.controller.getActiveReports(setState(() {}));
     widget.controller.setMarkersAppearence();
     widget.controller.getCurrentLocation();
     super.initState();
@@ -36,16 +38,18 @@ class MapSampleState extends State<MapWidget>
         centerTitle: false,
         title: const Text('Situação viral'),
       ),
-      body: GoogleMap(
-        myLocationEnabled: true,
-        mapType: MapType.normal,
-        initialCameraPosition: widget.controller.getInitialPosition(),
-        markers: widget.controller.markers,
-        onMapCreated: (GoogleMapController controller) {
-          widget.controller.googleMapController.complete(controller);
-          setState(() {
-            widget.controller.addInitialMarkers();
-          });
+      body: Observer(
+        builder: (BuildContext context) {
+          widget.controller.reportListResponse;
+          return GoogleMap(
+            myLocationEnabled: true,
+            mapType: MapType.normal,
+            initialCameraPosition: widget.controller.getInitialPosition(),
+            markers: widget.controller.markers,
+            onMapCreated: (GoogleMapController controller) {
+              widget.controller.googleMapController.complete(controller);
+            },
+          );
         },
       ),
       floatingActionButton: FloatingActionButton.extended(

@@ -1,7 +1,10 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'dart:typed_data';
+import 'package:informa_saude/models/report.dart';
 import 'dart:async';
 import 'package:mobx/mobx.dart';
 part 'map_controller.g.dart';
@@ -14,7 +17,41 @@ abstract class _MapController with Store {
 
   @observable
   Observable<Position?> position = Observable(null);
+
   Set<Marker> markers = {};
+
+  @observable
+  List<ReportData>? reportListResponse;
+
+  final Dio dio = Dio(
+    BaseOptions(baseUrl: 'https://informa-saude.herokuapp.com'),
+  );
+
+  @action
+  Future getActiveReports(void callback) async {
+    try {
+      final response = await dio.get("/report/ativos");
+      final responseList = response.data["report"] as List;
+      reportListResponse = responseList
+          .map((reportJson) => ReportData.fromJson(reportJson))
+          .toList();
+      addMarkers();
+      callback;
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  @action
+  Future sendReport() async {
+    var params = {
+      "item": "itemx",
+      "options": jsonEncode([1, 2, 3]),
+    };
+
+    final response = await dio.post("/report", data: jsonEncode(params));
+    print(response);
+  }
 
   @action
   Future getCurrentLocation() async {
@@ -72,77 +109,18 @@ abstract class _MapController with Store {
     }
   }
 
-  void addInitialMarkers() {
-    markers.add(
-      Marker(
-        icon: markerIcon,
-        markerId: const MarkerId('hotelEmbaixador'),
-        position: const LatLng(
-          -30.032475010511803,
-          -51.22722920795883,
-        ),
-        alpha: 0.4,
-      ),
-    );
-
-    markers.add(
-      Marker(
-        icon: markerIcon,
-        markerId: const MarkerId('ZaffFernandoMachado'),
-        position: const LatLng(
-          -30.034900921177577,
-          -51.22879420724154,
-        ),
-        alpha: 0.4,
-      ),
-    );
-
-    markers.add(
-      Marker(
-        icon: markerIcon,
-        markerId: const MarkerId('ZaffFernandoMachado'),
-        position: const LatLng(
-          -30.034824948453142,
-          -51.228859991012776,
-        ),
-        alpha: 0.4,
-      ),
-    );
-
-    markers.add(
-      Marker(
-        icon: markerIcon,
-        markerId: const MarkerId('agridoceCafe'),
-        position: const LatLng(
-          -30.037787834260566,
-          -51.22417148971547,
-        ),
-        alpha: 0.4,
-      ),
-    );
-
-    markers.add(
-      Marker(
-        icon: markerIcon,
-        markerId: const MarkerId('fernMachadoOther'),
-        position: const LatLng(
-          -30.03486260917668,
-          -51.22713716821253,
-        ),
-        alpha: 0.4,
-      ),
-    );
-
-    markers.add(
-      Marker(
-        icon: markerIcon,
-        markerId: const MarkerId('hotelIntercity'),
-        position: const LatLng(
-          -30.034826472459592,
-          -51.2231612664405,
-        ),
-        alpha: 0.4,
-      ),
+  void addMarkers() {
+    reportListResponse?.forEach(
+      (reportData) {
+        markers.add(
+          Marker(
+            icon: markerIcon,
+            markerId: MarkerId("${reportData.id}"),
+            position: LatLng(reportData.latitude, reportData.longitude),
+            alpha: 0.4,
+          ),
+        );
+      },
     );
   }
 

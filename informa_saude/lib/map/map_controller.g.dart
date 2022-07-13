@@ -24,6 +24,38 @@ mixin _$MapController on _MapController, Store {
     });
   }
 
+  final _$reportListResponseAtom =
+      Atom(name: '_MapController.reportListResponse');
+
+  @override
+  List<ReportData>? get reportListResponse {
+    _$reportListResponseAtom.reportRead();
+    return super.reportListResponse;
+  }
+
+  @override
+  set reportListResponse(List<ReportData>? value) {
+    _$reportListResponseAtom.reportWrite(value, super.reportListResponse, () {
+      super.reportListResponse = value;
+    });
+  }
+
+  final _$getActiveReportsAsyncAction =
+      AsyncAction('_MapController.getActiveReports');
+
+  @override
+  Future<dynamic> getActiveReports(void callback) {
+    return _$getActiveReportsAsyncAction
+        .run(() => super.getActiveReports(callback));
+  }
+
+  final _$sendReportAsyncAction = AsyncAction('_MapController.sendReport');
+
+  @override
+  Future<dynamic> sendReport() {
+    return _$sendReportAsyncAction.run(() => super.sendReport());
+  }
+
   final _$getCurrentLocationAsyncAction =
       AsyncAction('_MapController.getCurrentLocation');
 
@@ -36,7 +68,8 @@ mixin _$MapController on _MapController, Store {
   @override
   String toString() {
     return '''
-position: ${position}
+position: ${position},
+reportListResponse: ${reportListResponse}
     ''';
   }
 }
