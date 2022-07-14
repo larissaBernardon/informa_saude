@@ -19,6 +19,8 @@ class MapWidget extends StatefulWidget {
 
 class MapSampleState extends State<MapWidget>
     with AutomaticKeepAliveClientMixin {
+  bool firstReport = true;
+
   @override
   bool get wantKeepAlive => false;
 
@@ -79,7 +81,11 @@ class MapSampleState extends State<MapWidget>
           onButtonTapped: (value) {
             widget.controller.addCovidMarker();
             setState(() {});
-            Navigator.pop(context);
+
+            int count = 0;
+            var max = firstReport ? 3 : 1;
+            Navigator.of(context).popUntil((_) => count++ >= max);
+            firstReport = false;
 
             const snackBar = SnackBar(
               backgroundColor: Colors.green,
@@ -98,8 +104,8 @@ class MapSampleState extends State<MapWidget>
       context,
       MaterialPageRoute(
         builder: (context) => ReportInformationView(
-          screenTitle: "Informe seu email",
-          formFieldTitle: '1. Informe seu email',
+          screenTitle: "1. Informe seu email",
+          formFieldTitle: 'Informe seu email',
           buttonTitle: 'Avançar',
           onButtonTapped: (value) async {
             saveUserDataLocal('email', value);
@@ -107,12 +113,21 @@ class MapSampleState extends State<MapWidget>
               context,
               MaterialPageRoute(
                 builder: (context) => ReportInformationView(
-                  screenTitle: "Informe seu nome",
-                  formFieldTitle: '2. Informe seu nome completo',
+                  screenTitle: "2. Informe seu nome",
+                  formFieldTitle: 'Informe seu nome completo',
                   buttonTitle: 'Avançar',
                   onButtonTapped: (value) {
                     saveUserDataLocal('nome', value);
-                    Navigator.pop(context);
+                    goToReportFlow();
+                    // int count = 0;
+                    // Navigator.of(context).popUntil((_) => count++ >= 3);
+
+                    // const snackBar = SnackBar(
+                    //   backgroundColor: Colors.green,
+                    //   content: Text('Report adicionado com sucesso!'),
+                    // );
+
+                    // ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
                 ),
               ),
